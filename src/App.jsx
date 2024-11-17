@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BookAdd from './components/BookAdd';
 import httpClient from './services/httpClient';
 import BookList from './components/BookList';
+import { VscLaw } from 'react-icons/vsc';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -20,14 +21,24 @@ const App = () => {
     // update UI
     setData([...data, response.data]);
   };
+
+  const deleteBook = async (id) => {
+    // updateUi
+    setData(data.filter((book) => book.id !== id));
+
+    //update Database
+    httpClient.delete(`/books/${id}`);
+  };
+
   useEffect(() => {
     fetchBooks();
   }, []);
+
   return (
     <div className="container" style={{ maxWidth: '600px' }}>
-      <BookList data={data} />
+      <BookList data={data} deleteBook={deleteBook} />
       <BookAdd addBook={addBook} />
-    </div>
+     </div>
   );
 };
 
