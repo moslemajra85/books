@@ -1,9 +1,17 @@
 import React from 'react';
-
-const BookEdit = () => {
+import { useState } from 'react';
+const BookEdit = ({ book, updateBook }) => {
+  const [title, setTitle] = useState('');
   return (
     <div className="p-2 border rounded">
-      <form>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          updateBook(book.id, {
+            title,
+          });
+        }}
+      >
         <label htmlFor="titl" className="form-label">
           Book Title
         </label>
@@ -11,6 +19,10 @@ const BookEdit = () => {
           className="form-control"
           type="text"
           placeholder="update title..."
+          onChange={(event) => {
+            setTitle(event.target.value);
+          }}
+          value={title}
         />
 
         <button className="btn btn-info btn-sm mt-2">Save</button>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const BookAdd = ({ addBook }) => {
   const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
 
   return (
     <div className="border rounded p-3">
@@ -11,9 +12,11 @@ const BookAdd = ({ addBook }) => {
           event.preventDefault();
           addBook({
             title,
+            category,
           });
 
           setTitle('');
+          setCategory('');
         }}
         className="bg-primary text-light border rounded p-3"
       >
@@ -30,6 +33,21 @@ const BookAdd = ({ addBook }) => {
               setTitle(event.target.value);
             }}
             value={title}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="category" className="form-label">
+            Category:
+          </label>
+          <input
+            className="form-control"
+            id="category"
+            type="text"
+            placeholder="Enter category..."
+            onChange={(event) => {
+              setCategory(event.target.value);
+            }}
+            value={category}
           />
         </div>
         <button type="submit" className="btn btn-secondary mt-3">
