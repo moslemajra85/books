@@ -1,34 +1,13 @@
 {
   "books": [
     {
-      "id": "8c4f",
-      "title": "My Book",
-      "category": "Romance"
-    },
-    {
       "id": "de9b",
       "title": "Harry Potter",
       "category": "Fantasy"
     },
     {
-      "id": "594b",
-      "title": "The Ring",
-      "category": "Horror"
-    },
-    {
-      "id": "6e53",
-      "title": "Another Book",
-      "category": "Romance"
-    },
-    {
-      "id": "4a01",
-      "title": "Happy Life",
-      "category": "Romance"
-    },
-    {
-      "id": "67d0",
-      "title": "Killers",
-      "category": "Horror"
+      "title": "The Book Of Eli",
+      "id": "1de7"
     }
   ]
 }

@@ -2,17 +2,14 @@ import React, { useEffect, useState } from 'react';
 import BookAdd from './components/BookAdd';
 import httpClient from './services/httpClient';
 import BookList from './components/BookList';
-
 const App = () => {
   const [data, setData] = useState([]);
-  const [filtered, setFilterd] = useState([]);
   const [error, setError] = useState('');
 
   const fetchBooks = async () => {
     try {
       const response = await httpClient.get('/books');
       setData(response.data);
-      setFilterd(response.data);
     } catch (error) {
       setError(error.message);
     }
@@ -58,10 +55,6 @@ const App = () => {
     }
   };
 
-  const filter = (category) => {
-    setFilterd(data.filter((item) => item.category.includes(category)));
-  };
-
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -75,12 +68,7 @@ const App = () => {
   } else {
     return (
       <div className="container" style={{ maxWidth: '600px' }}>
-        <BookList
-          filter={filter}
-          data={filtered}
-          deleteBook={deleteBook}
-          updateBook={updateBook}
-        />
+        <BookList data={data} deleteBook={deleteBook} updateBook={updateBook} />
         <BookAdd addBook={addBook} />
       </div>
     );
